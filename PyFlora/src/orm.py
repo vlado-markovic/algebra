@@ -3,9 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-db_path = "PyFlora/src/pyflora.db"
-#'sqlite:///my_database.db'
+db_path = 'sqlite:///pyflora.db'
 
+
+#"PyFlora/src/pyflora.db"
+#
 
 # In this model, we define the User class as a subclass of Base from declarative_base().
 # We also define the __tablename__ attribute to specify the name of the SQLite table.

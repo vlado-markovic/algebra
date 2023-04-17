@@ -14,3 +14,7 @@ for row in rows:
 
 cursor.close()
 conn.close()
+
+
+def funk():
+    pass
