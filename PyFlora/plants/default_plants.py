@@ -1,8 +1,6 @@
 import sys
 sys.path.append('/home/vlado/Desktop/playground/algebra/PyFlora')
-
-
-from src.orm import create_plant
+from src.orm import create_plant, read_plants
 
 media_folder = "PyFlora/plants/media"
 
@@ -27,4 +25,6 @@ plants = {
 
 
 for plant in plants:
-    create_plant(plant, plant[0])
+    create_plant(plant, plants[plant]['image_path'])
+
+read_plants()
