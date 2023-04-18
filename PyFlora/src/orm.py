@@ -38,9 +38,13 @@ class Plant(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     image_path = Column(String)
+    
+    def __init__(self, name, image_path):
+        self.name = name
+        self.image_path = image_path
 
-    def __repr__(self):
-        return f"<Post(title='{self.title}')>"
+    # def __repr__(self):
+    #     return f"<Plant(name='{self.name}', image_path='{self.image_path}')>"
 
 
 class Bucket(Base):
@@ -103,17 +107,20 @@ def delete_user_by_name(name):
 
 # Create a new plant
 def create_plant(name, image_path):
-    plant = Plant(name,image_path)
+    plant = Plant(name, image_path)
     session.add(plant)
     session.commit()
+
 
 
 # Read all plants
 def read_plants():
     plants = session.query(Plant).all()
     for plant in plants:
-        print(plant)
+        print (plant.name, plant.image_path)
+        # print(plants[0][2])
 
+read_plants()
 
 # Update a plant
 def update_plant_by_name(name, image_path):
@@ -134,7 +141,7 @@ def delete_plant_by_name(name):
 
 # Create a new plant
 def create_plant(name, image_path):
-    plant = Plant(name,image_path)
+    plant = Plant(name, image_path)
     session.add(plant)
     session.commit()
 
