@@ -1,5 +1,10 @@
 # tracking changes and progess
 
+Apr 25
+
+- add task - game guess the num
+- add basic sensor data generation
+
 Apr 17
 
 - two new tables under one pyflora database
