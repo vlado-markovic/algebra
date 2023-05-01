@@ -16,5 +16,5 @@ cursor.close()
 conn.close()
 
 
-def funk():
+def login():
     pass

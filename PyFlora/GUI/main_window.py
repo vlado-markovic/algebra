@@ -1,41 +1,40 @@
-import tkinter as tk
+from tkinter import *
 
-class GUIWindow(tk.Tk):
+
+class Login(Tk):
+    
     def __init__(self):
         super().__init__()
+         
+        self.login_label = Label(self, text="Prijava")
+        self.login_label.pack()
         
-        # Create label to display data
-        self.data_label = tk.Label(self, text="Hello World!")
-        self.data_label.pack()
+        self.user_name_label = Label(self, text="Korisnicko Ime")
+        self.user_name_label.pack()
         
-        # Create button to update data
-        self.update_button = tk.Button(self, text="Update", command=self.update_data)
-        self.update_button.pack()
+        self.user_name = Entry(self, width=40, borderwidth=5)
+        self.user_name.insert(0, "unesite vase korisnicko ime")
+        self.user_name.pack()
         
-    def update_data(self):
-        # Update label with new data
-        self.data_label.configure(text="New data!")
+        self.password_label = Label(self, text="Lozinka")
+        self.password_label.pack()
         
-# Create GUI window
-gui = GUIWindow()
-gui.mainloop()
+        self.password = Entry(self, text="Unesite svoju lozinku", width=40, borderwidth=5)
+        self.password.insert(0, "unesite vasu lozinku")
+        self.password.pack()
+          
+        
+        def log_in ():
+            name = self.user_name.get()
+            passw = self.password.get()
+            
+            print (name, passw)
 
-# default coordinates of main screen 
-def center_window(window_instance, width=1000, height=500):
-    # get screen width and height
-    screen_width = window_instance.winfo_screenwidth()
-    screen_height = window_instance.winfo_screenheight()
 
-    # calculate position x and y coordinates
-    x = (screen_width / 2) - (window_width / 2)
-    y = (screen_height / 2) - (window_height / 2)
-    
-    
-    norm_width = x #(screen_width - width)
-    norm_height = y #(screen_height - height)
-    
-    
-    print ('%dx%d+%d+%d' % (norm_width, norm_height, x, y))
+        self.login_button = Button(self, text="Prijavi me", command=log_in)
+        self.login_button.pack()
 
-    return ('%dx%d+%d+%d' % (norm_width, norm_height, x, y))
-    #return ('%dx%d+%d+%d' % (x, y))
+
+login = Login()
+login.title("Welcome to PyFlora")
+login.mainloop()
