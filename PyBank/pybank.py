@@ -2,6 +2,7 @@ import os
 import sys
 import datetime
 import time
+import re
 
 # Dictionary to store account information
 accounts = {}
@@ -13,6 +14,14 @@ def generate_account_number():
     num = str(len(accounts) + 1).zfill(5)
     return f"BA-{year}-{month}-{num}" # --> "BA-YEAR-MONTH-NNNNN"
 
+# Only 11 character are allowed for Croatian citizen personal num
+def validate_oib(oib):
+    pattern = r'^[0-9]+$'  # Matches one or more digits from start to end
+    
+    if re.match(pattern, oib):
+        return True
+    else:
+        return False
 
 # Create a new account
 def create_account():
@@ -23,7 +32,7 @@ def create_account():
     
     while True:
         oib = input("Enter OIB (11 digits): ")
-        if len(oib) == 11:
+        if len(oib) == 11 and validate_oib(oib):
             break
     
     responsible_person = input("Enter responsible person name: ")
@@ -48,6 +57,7 @@ def create_account():
     
     time.sleep(2)
 
+# get the account number from user input, and validate it
 def get_account_number():
     while True: 
         try:
@@ -62,14 +72,15 @@ def get_account_number():
 # Display account balance
 def display_balance(account):  
     print(f"Account balance: {accounts[account]['balance']} {accounts[account]['currency']}")
-    time.sleep(2)
+    time.sleep(4)
 
 # Display account transactions
 def display_transactions(account):
     trasactions = accounts[account]["transactions"]
     print(f"Transactions for account number {trasactions}: ")
-    time.sleep(3)
-    
+    time.sleep(4)
+
+# Log the withdraw or deposit actions   
 def log_transaction(type, acc_num, amount):
     accounts[acc_num]['transactions'].append(f"{type} {amount}")
 
@@ -87,8 +98,7 @@ def deposit_money(acc_num):
     else: 
         print ("Inesert amount bigger than zero!")
         time.sleep(1)
-        
-    
+            
 def withdraw(acc_num, amount):       
     if accounts[acc_num]['balance'] >= amount:
        accounts[acc_num]['balance'] -= amount
@@ -107,7 +117,7 @@ def withdraw_money(acc_num):
         print("Inesert amount bigger than zero!")
         time.sleep(1)
         
-    
+# execute the user option from menu    
 def start_options(choice):
     if choice == "1":
         create_account()
@@ -142,16 +152,19 @@ def show_menu():
     # handle user choice
     start_options(choice)    
 
+# clear content in terminal
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def start_screen():
     show_menu()
  
-     # clear the screen
+    # clear the screen
     clear_screen()
+    
+    # debugging mode :) 
     print (accounts)
 
+# show the main menu
 while True:
-    # show the main menu
     start_screen()
