@@ -1,0 +1,15 @@
+{
+    "bla bla": {
+        "ime": "bla bla",
+        "prezime": "dad",
+        "datum rodenja": "adadsadwaw",
+        "broj telefona": "kfafsa",
+        "adresa": {
+            "ulica": "faf",
+            "broj": "fafs",
+            "grad": "safasfas",
+            "postanski broj": "fasfasfasf",
+            "drzava": "qwqqqq"
+        }
+    }
+}
