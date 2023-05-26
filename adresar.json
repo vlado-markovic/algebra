@@ -11,5 +11,18 @@
             "postanski broj": "fasfasfasf",
             "drzava": "qwqqqq"
         }
+    },
+    "dd": {
+        "ime": "dd",
+        "prezime": "dddd",
+        "datum rodenja": "adadada",
+        "broj telefona": "dadada",
+        "adresa": {
+            "ulica": "dadadada",
+            "broj": "dddd",
+            "grad": "adadadad",
+            "postanski broj": "adada",
+            "drzava": "adad"
+        }
     }
 }

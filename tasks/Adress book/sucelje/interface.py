@@ -1,6 +1,4 @@
 import json
-from osoba.Osoba import Osoba
-from adresa.Adresa import Adresa
 
 class Sucelje:
     def __init__(self, datoteka='adresar.json'):
