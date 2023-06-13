@@ -1,2 +1,0 @@
-- prepraviti vozni park tako da zapisuje i cita iz datoteke
-- prepraviti password manager tako da zapisuje i cita iz datoteke
