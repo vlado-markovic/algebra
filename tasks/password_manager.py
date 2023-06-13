@@ -25,10 +25,32 @@
 # ! Za promijenu passworda treba usporedit stari pass i ono sto ej u dict-u, ako odgovoara update-at
 # ! Treba vam jedna varijabla koja pamti trenutno ulogiranog usera
 
-users = {"admin": 'admin'}
 
-admins = set()
-admins.add("admin")
+# update - may 2023 - promjeni kod da cita/zapisuje u datoteku
+
+import json
+
+
+try:
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+except FileNotFoundError:
+    users = {"admin": 'admin'}
+
+try:
+    with open('admins.json', 'r') as f:
+        admins = set(json.load(f))
+except FileNotFoundError:
+    admins = set(["admin"])
+
+
+def save_data():
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+
+    with open('admins.json', 'w') as f:
+        json.dump(list(admins), f)
+
 
 def add_user():
     username = input("Enter a username: ")
@@ -38,9 +60,10 @@ def add_user():
     if is_admin.casefold() == 'y':
         admins.add(username)
         print("User added as admin successfully.")
+        save_data()
     else:
         print("User added successfully.")
-
+        save_data()
     
 def show_all_users():
     print("List of all users:")
@@ -66,6 +89,7 @@ def change_password(username):
             continue
 
         users[username] = new_password
+        save_data()
         print("Password updated successfully.")
         break
         
@@ -75,6 +99,7 @@ def delete_user():
         del users[username]
         if username in admins:
             admins.remove(username)
+            save_data()
         print("User deleted successfully.")
     else:
         print("User not found.")
@@ -82,6 +107,8 @@ def delete_user():
 def logout():
     print("You have been logged out.")
 
+
+# menus
 def admin_menu(current_user):
     while True:
         print("Select an option:")
@@ -94,9 +121,9 @@ def admin_menu(current_user):
 
         choice = input("Enter your choice (1-6): ")
 
-        if choice not in range(1, 7):
-            print("Invalid choice. Please enter a number from 1 to 6.")
-            continue
+        # if choice not in range(1, 7):
+        #     print("Invalid choice. Please enter a number from 1 to 6.")
+        #     continue
 
         if choice == '1':
             add_user()
@@ -119,10 +146,6 @@ def user_menu(current_user):
         print("2. Logout")
 
         choice = input("Enter your choice: ")
-
-        if choice not in range(1, 3):
-            print("Invalid choice. Please enter 1 or 2.")
-            continue
 
         if choice == '1':
             change_password(current_user)
