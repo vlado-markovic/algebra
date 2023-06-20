@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from models import Author, Publisher, Book, Base
 
 # Kreiranje baze podataka i sesije
-engine = create_engine('sqlite:///bookshop.db')
+engine = create_engine('sqlite:///bookshop.db', echo=True)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
