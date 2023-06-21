@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Table, ForeignKey
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 
 # Definiritati bazu podtaka
-engine = create_engine('sqlite:///baza.db', echo=True)
+engine = create_engine('sqlite:///moj-pas.db', echo=True)
 
 # Povezat na tu bazu
 Session = sessionmaker(bind=engine) # deklaracija klase
